@@ -21,7 +21,6 @@ public class SimpleGame extends SOSGame {
                 System.exit(0);
             } else {
                 System.out.println("No SOS detected for this move.");
-                switchTurn();
             }
         } else {
             System.out.println("Invalid move. This cell is already occupied.");

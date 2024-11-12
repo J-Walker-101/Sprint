@@ -9,11 +9,11 @@ public class Player {
         this.isHuman = isHuman;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isHuman() {
         return isHuman;
+    }
+
+    public String getName() {
+        return name;
     }
 }

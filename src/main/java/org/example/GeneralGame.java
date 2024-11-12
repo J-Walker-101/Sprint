@@ -21,30 +21,20 @@ public class GeneralGame extends SOSGame {
                     bluePlayerScore++;
                     System.out.println("Blue scores! Total Blue score: " + bluePlayerScore);
                 }
-            } else {
-                System.out.println("No SOS detected for this move.");
             }
-            switchTurn();
+            if (board.isFull()) {
+                System.out.println("The board is full. " + getWinner());
+                board.printBoard();
+                System.exit(0);
+            }
         } else {
             System.out.println("Invalid move. Cell is already occupied.");
         }
     }
 
     public String getWinner() {
-        if (redPlayerScore > bluePlayerScore) {
-            return "Red wins with score: " + redPlayerScore;
-        } else if (bluePlayerScore > redPlayerScore) {
-            return "Blue wins with score: " + bluePlayerScore;
-        } else {
-            return "It's a tie!";
-        }
-    }
-
-    public int getRedPlayerScore() {
-        return redPlayerScore;
-    }
-
-    public int getBluePlayerScore() {
-        return bluePlayerScore;
+        if (redPlayerScore > bluePlayerScore) return "Red wins with score: " + redPlayerScore;
+        else if (bluePlayerScore > redPlayerScore) return "Blue wins with score: " + bluePlayerScore;
+        else return "It's a tie!";
     }
 }

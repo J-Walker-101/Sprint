@@ -28,7 +28,30 @@ public abstract class SOSGame {
         return board;
     }
 
+    public void setRedPlayer(Player redPlayer) {
+        this.redPlayer = redPlayer;
+        this.currentPlayer = redPlayer; // Set the first turn to the red player
+    }
+
+    public void setBluePlayer(Player bluePlayer) {
+        this.bluePlayer = bluePlayer;
+    }
+
+    public void makeComputerMove() {
+        if (currentPlayer instanceof ComputerPlayer) { // Only proceed if the current player is a computer
+            int[] move = ((ComputerPlayer) currentPlayer).makeMove(board);
+            char letter = ((ComputerPlayer) currentPlayer).chooseLetter();
+            System.out.println("Computer (" + currentPlayer.getName() + ") places " + letter + " at (" + move[0] + ", " + move[1] + ")");
+            placeLetter(move[0], move[1], letter);
+        }
+    }
+
     public boolean hasSOS(int row, int col) {
+        if (row < 0 || col < 0 || row >= board.getSize() || col >= board.getSize()) {
+            System.out.println("Invalid coordinates for SOS detection: (" + row + ", " + col + ")");
+            return false;
+        }
+
         char currentLetter = board.getCell(row, col);
 
         // Check horizontally
